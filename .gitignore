@@ -2,4 +2,7 @@
 .idea/
 **/__pycache__/
 arena/
+logs/node_modules/
+node_modules
+package-lock.json
 logs/

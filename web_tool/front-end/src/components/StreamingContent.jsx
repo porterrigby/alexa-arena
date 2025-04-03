@@ -23,6 +23,28 @@ class Groupchat extends React.Component {
       groupMessage: [],
       uid: 'user'
     };
+
+    // Listen for messages from Retico
+    this.socket = new WebSocket('ws://localhost:8081');
+    this.socket.onopen = () => {
+      this.socket.send('Hello Retico!');
+    };
+    this.socket.addEventListener('message', ({ data }) => {
+      console.log(data);
+      let message = JSON.parse(data);
+      this.setState(
+        prevState => ({
+          groupMessage: [...prevState.groupMessage, message],
+          messageText: null
+        }),
+        () => {
+          this.scrollToBottom();
+        }
+      );
+
+      let text = { utterance: message.text };
+      this.sendPostRequest(PROCESS_UTTERANCE_URL, text);
+    });
   }
   sendMessage = () => {
     let message = { uid: this.state.uid, text: this.state.messageText };
@@ -53,6 +75,7 @@ class Groupchat extends React.Component {
     this.sendMessage();
     // @ts-ignore
     event.target.reset();
+    console.log(this.state);
   };
 
   sendPostRequest = (url, data) => {

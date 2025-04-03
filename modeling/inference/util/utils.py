@@ -45,7 +45,7 @@ def compute_similarity(sentence_embedding_1, sentence_embedding_2):
 
 def restore_checkpoint(path_to_model_checkpoint, model, device, optimizer=None):
     print(f"Restoring checkpoint {path_to_model_checkpoint}")
-    checkpoint = torch.load(path_to_model_checkpoint,  map_location=torch.device(device))
+    checkpoint = torch.load(path_to_model_checkpoint,  map_location=torch.device(device), weights_only=False)
     state_dict = checkpoint["model"]
     try:
         new_state_dict = make_state_dict_compatible(state_dict)

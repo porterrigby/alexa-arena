@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd ~/AlexaArena/scripts && bash run_streaming_server.sh & 
+cd $HOME/AlexaArena/web_tool/front-end && npm start -- --host=$PUBLIC_DNS &
+cd $HOME/AlexaArena/web_tool && ./run_server.sh
+

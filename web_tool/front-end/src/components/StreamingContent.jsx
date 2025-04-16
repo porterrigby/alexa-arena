@@ -25,26 +25,28 @@ class Groupchat extends React.Component {
     };
 
     // Listen for messages from Retico
-    this.socket = new WebSocket('ws://localhost:8081');
-    this.socket.onopen = () => {
-      this.socket.send('Hello Retico!');
-    };
-    this.socket.addEventListener('message', ({ data }) => {
-      console.log(data);
-      let message = JSON.parse(data);
-      this.setState(
-        prevState => ({
-          groupMessage: [...prevState.groupMessage, message],
-          messageText: null
-        }),
-        () => {
-          this.scrollToBottom();
-        }
-      );
+    // this.socket = new WebSocket('ws://localhost:8081');
+    // this.socket = new WebSocket('ws://localhost:9000');
+    // this.socket = new WebSocket('ws://127.0.0.1:9000');
+    // this.socket.onopen = () => {
+    //   this.socket.send('Hello Retico!');
+    // };
+    // this.socket.addEventListener('message', ({ data }) => {
+    //   console.log(data);
+    //   let message = JSON.parse(data);
+    //   this.setState(
+    //     prevState => ({
+    //       groupMessage: [...prevState.groupMessage, message],
+    //       messageText: null
+    //     }),
+    //     () => {
+    //       this.scrollToBottom();
+    //     }
+    //   );
 
-      let text = { utterance: message.text };
-      this.sendPostRequest(PROCESS_UTTERANCE_URL, text);
-    });
+      // let text = { utterance: message.text };
+      // this.sendPostRequest(PROCESS_UTTERANCE_URL, text);
+    // });
   }
   sendMessage = () => {
     let message = { uid: this.state.uid, text: this.state.messageText };

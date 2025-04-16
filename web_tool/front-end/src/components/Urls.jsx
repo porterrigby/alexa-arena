@@ -9,4 +9,3 @@ export const GET_CDFS_URL = "http://" + PUBLIC_IP + ":11000/get_cdfs";
 export const START_GAME_URL = "http://" + PUBLIC_IP + ":11000/start_game";
 export const BEGIN_SESSION_URL = "http://" + PUBLIC_IP + ":11000/begin_session";
 export const STREAMING_URL = "http://" + PUBLIC_IP + ":81";
-// export const STREAMING_URL = "http://" + PUBLIC_IP + ":8080";
